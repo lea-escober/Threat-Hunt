@@ -38,9 +38,9 @@ The attacker authenticated successfully from the external IP address: `148.64.10
 Using the account: `sancadmin`
 
 Three hosts were accessed in chronological order:
-First foothold: **npt-ws01** at 20:57 UTC
-Then **npt-srv01** at 21:58 UTC
-Then **npt-linux01** at 22:01 UTC
+* First foothold: **npt-ws01** at 20:57 UTC
+* Then **npt-srv01** at 21:58 UTC
+* Then **npt-linux01** at 22:01 UTC
 
 **Query used to locate events:**
 ```kql
