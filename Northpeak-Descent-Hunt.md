@@ -174,6 +174,20 @@ By separating operator activity from normal system operations, it became clear t
 
 This distinction prevented normal Defender telemetry from being mistaken for malicious activity.
 
+```kql
+DeviceProcessEvents
+| where DeviceName has_any ("npt-ws01","npt-srv01","npt-linux01")
+| where Timestamp between (datetime(2026-06-16 20:00:00) .. datetime(2026-06-17 00:30:00))
+| where FileName =~ "powershell.exe"
+| where ProcessCommandLine has_any ("-EncodedCommand", "-enc")
+| summarize Count=count(),
+            FirstSeen=min(Timestamp),
+            LastSeen=max(Timestamp)
+    by AccountName, InitiatingProcessFileName
+| order by Count desc
+```
+<img width="975" height="83" alt="image" src="https://github.com/user-attachments/assets/665a1e2f-8879-4a3d-a978-2d58b5ce9156" />
+
 ---
 ## Phase 7 — Persistence
 The attacker established persistence using a Windows Run Registry key.
