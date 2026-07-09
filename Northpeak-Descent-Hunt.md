@@ -15,6 +15,7 @@
 **Languages/Tools:**
 
 * Kusto Query Language (KQL)
+* Native Windows Utilities
   
 ---
 
