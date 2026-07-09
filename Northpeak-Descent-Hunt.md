@@ -1,6 +1,7 @@
 # Threat Hunt Report: Northpeak Descent Investigation
 
 **Participant:** Lea Angeline Escober
+
 **Date:** July 2026
 
 ## Platforms and Languages Leveraged
@@ -137,4 +138,66 @@ DeviceProcessEvents
 <img width="975" height="221" alt="image" src="https://github.com/user-attachments/assets/d04686e4-fdd0-429a-8a38-566dab8ed7dd" />
 
 ---
+## Phase 4 - Linux Tooling
+Before pivoting further into the environment, the attacker prepared the Linux host.
+The investigation showed the installation of `netexec` along with supporting Python packages.
 
+This tool was likely used to facilitate authentication testing and lateral movement into Windows systems.
+
+**Query used to locate events:**
+```kql
+DeviceProcessEvents
+| where DeviceName == "npt-linux01"
+| where AccountName == "sancadmin"
+| where Timestamp > datetime(2026-06-16 22:27:55)
+| project Timestamp, FileName, ProcessCommandLine
+| order by Timestamp asc
+```
+<img width="975" height="263" alt="image" src="https://github.com/user-attachments/assets/48c3f935-27f7-47c1-8d00-7094119ab16b" />
+
+---
+## Phase 5 — Internal Lateral Movement
+After completing reconnaissance, the attacker pivoted through the internal network using legitimate credentials.
+
+The sequence of movement was: 
+
+Internet
+        │
+        ▼
+npt-ws01
+        │
+        ▼
+npt-srv01
+        │
+        ▼
+npt-linux01
+
+Rather than exploiting vulnerabilities, the attacker authenticated successfully using valid credentials throughout the environment.
+
+---
+## Phase 6 — PowerShell Execution
+The Windows workstation generated a significant amount of PowerShell activity.
+By separating operator activity from normal system operations, it became clear that:
+* SYSTEM-generated PowerShell executions were launched repeatedly by Microsoft's Defender extension.
+* Only a small number of PowerShell executions belonged to the attacker.
+
+This distinction prevented normal Defender telemetry from being mistaken for malicious activity.
+
+---
+## Phase 7 — Persistence
+The attacker established persistence using a Windows Run Registry key.
+Instead of installing a service or scheduled task, a PowerShell command was configured to automatically launch `NorthpeakSyncTray.ps1` whenever the user logged in.
+This ensured the beacon would survive system reboots while remaining relatively inconspicuous.
+
+```kql
+DeviceProcessEvents
+| where DeviceName has_any ("npt-ws01","npt-srv01","npt-linux01")
+| where Timestamp between (datetime(2026-06-16 20:00:00) .. datetime(2026-06-17 00:30:00))
+| where AccountName == "sancadmin"
+| where InitiatingProcessFileName has "powershell.exe"
+| project Timestamp, AccountDomain, AccountName, ProcessCommandLine
+| order by Timestamp asc 
+```
+<img width="975" height="138" alt="image" src="https://github.com/user-attachments/assets/0f975078-7d9f-4fc4-aba4-404c93bfa8d1" />
+
+---
