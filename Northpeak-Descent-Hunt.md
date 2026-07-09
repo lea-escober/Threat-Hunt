@@ -62,7 +62,8 @@ DeviceLogonEvents
 ---
 ### Phase 2 - Hands-on-Keyboard Reconnaissance
 After obtaining access, the attacker performed manual reconnaissance on each system.
-**Windows**
+
+## **Windows**
 The attacker first verified network connectivity by executing:
 * `PowerShell`
 * `ipconfig`
@@ -86,7 +87,7 @@ On `npt-srv01`:
 <img width="975" height="70" alt="image" src="https://github.com/user-attachments/assets/2e5075ef-0315-4762-afbf-25bab12dd7f9" />
 
 
-**Linux**
+## **Linux**
 Once connected to the Linux server, the attacker performed extensive enumeration by running commands such as:
 
 * `hostname -I`
