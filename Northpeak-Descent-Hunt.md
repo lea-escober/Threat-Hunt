@@ -104,5 +104,15 @@ These commands demonstrate classic post-compromise discovery activity, allowing 
 
 <img width="975" height="279" alt="image" src="https://github.com/user-attachments/assets/c1d0f9cb-ec68-4830-bd8c-fa30fa43279b" />
 
+---
+### Phase 3 - Privilege Enumeration
+The attacker immediately checked which administrative privileges were available.
+On Linux, the attacker executed: `sudo -l`
+to enumerate commands that could be executed with elevated privileges.
+
+Later, on the Windows workstation, the attacker confirmed whether the compromised account belonged to the local Administrators group by checking for the SID: `S-1-5-32-544`
+
+This confirmed whether the account had local administrator rights before continuing with later stages of the intrusion.
+
 
 
