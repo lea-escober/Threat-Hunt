@@ -59,4 +59,49 @@ DeviceLogonEvents
 
 <img width="975" height="369" alt="image" src="https://github.com/user-attachments/assets/2a6c48bd-f344-4b77-b8e0-5209510cf007" />
 
+---
+### Phase 2 - Hands-on-Keyboard Reconnaissance
+After obtaining access, the attacker performed manual reconnaissance on each system.
+**Windows**
+The attacker first verified network connectivity by executing:
+* `PowerShell`
+* `ipconfig`
+
+on both Windows hosts.
+
+On `npt-ws01`:
+
+21:54:45 - powershell.exe
+
+21:54:48 - ipconfig.exe
+
+<img width="975" height="70" alt="image" src="https://github.com/user-attachments/assets/97f37a93-a2f9-4d8b-a3a8-ad94f8839668" />
+
+On `npt-srv01`:
+
+21:59:02 - powershell.exe
+
+21:59:13 - ipconfig.exe
+
+<img width="975" height="70" alt="image" src="https://github.com/user-attachments/assets/2e5075ef-0315-4762-afbf-25bab12dd7f9" />
+
+
+**Linux**
+Once connected to the Linux server, the attacker performed extensive enumeration by running commands such as:
+
+* `hostname -I`
+* `whoami`
+* `id`
+* `hostname`
+* `uname -a`
+* `ip a`
+* `cat /etc/passwd`
+* `last`
+* `sudo -l`
+
+These commands demonstrate classic post-compromise discovery activity, allowing the attacker to identify local users, operating system information, IP addresses, login history, and privilege escalation opportunities.
+
+<img width="975" height="279" alt="image" src="https://github.com/user-attachments/assets/c1d0f9cb-ec68-4830-bd8c-fa30fa43279b" />
+
+
 
