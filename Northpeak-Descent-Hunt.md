@@ -125,5 +125,16 @@ Later, on the Windows workstation, the attacker confirmed whether the compromise
 
 This confirmed whether the account had local administrator rights before continuing with later stages of the intrusion.
 
+**Query used to locate events:**
+```kql
+DeviceProcessEvents
+| where DeviceName == "npt-ws01"
+| where Timestamp between (datetime(2026-06-16 20:00:00) .. datetime(2026-06-17 00:30:00))
+| where AccountName == "sancadmin"
+| project Timestamp, AccountName, ProcessCommandLine, InitiatingProcessCommandLine
+```
 
+<img width="975" height="221" alt="image" src="https://github.com/user-attachments/assets/d04686e4-fdd0-429a-8a38-566dab8ed7dd" />
+
+---
 
