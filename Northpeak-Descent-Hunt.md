@@ -4,6 +4,8 @@
 
 **Date:** July 2026
 
+<img width="1774" height="887" alt="image" src="https://github.com/user-attachments/assets/98bd2f85-47a6-436d-9df7-fd2b5f7420dd" />
+
 ## Platforms and Languages Leveraged
 
 **Platforms:**
