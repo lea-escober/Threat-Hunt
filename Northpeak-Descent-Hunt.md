@@ -102,6 +102,17 @@ Once connected to the Linux server, the attacker performed extensive enumeration
 
 These commands demonstrate classic post-compromise discovery activity, allowing the attacker to identify local users, operating system information, IP addresses, login history, and privilege escalation opportunities.
 
+**Query used to locate events:**
+```kql
+let NorthpeakHosts = dynamic(["npt-ws01","npt-srv01","npt-linux01"]);
+DeviceProcessEvents
+| where DeviceName has_any (NorthpeakHosts)
+| where Timestamp between (datetime(2026-06-16 20:57:00) .. datetime(2026-06-16 22:15:00))
+| where AccountName == "sancadmin"
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by Timestamp asc
+```
+
 <img width="975" height="279" alt="image" src="https://github.com/user-attachments/assets/c1d0f9cb-ec68-4830-bd8c-fa30fa43279b" />
 
 ---
