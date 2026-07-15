@@ -1,4 +1,7 @@
 # Just Another Day – Nimbus Health Threat Hunt
+
+<img width="887" height="443.5" alt="image" src="https://github.com/user-attachments/assets/249982bd-7c69-45b7-831e-b9fbb57ef14b" />
+
 ## Overview
 This investigation focused on a suspicious billing account (`j.morris`) at Nimbus Health after unusual activity was detected. Although the initial assumption was that a former employee still had access, the telemetry revealed a different story. The account was being remotely operated using valid credentials from a public IP address, allowing the attacker to move across multiple systems, collect sensitive data, and stage stolen files without deploying malware.
 
