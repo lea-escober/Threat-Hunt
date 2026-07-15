@@ -1,4 +1,7 @@
 # Just Another Day – Nimbus Health Threat Hunt
+**Participant:** Lea Angeline Escober
+
+**Date:** July 2026
 
 <img width="887" height="443.5" alt="image" src="https://github.com/user-attachments/assets/249982bd-7c69-45b7-831e-b9fbb57ef14b" />
 
