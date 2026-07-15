@@ -1,6 +1,6 @@
 # Just Another Day – Nimbus Health Threat Hunt
 ## Overview
-This investigation focused on a suspicious billing account (j.morris) at Nimbus Health after unusual activity was detected. Although the initial assumption was that a former employee still had access, the telemetry revealed a different story. The account was being remotely operated using valid credentials from a public IP address, allowing the attacker to move across multiple systems, collect sensitive data, and stage stolen files without deploying malware.
+This investigation focused on a suspicious billing account (`j.morris`) at Nimbus Health after unusual activity was detected. Although the initial assumption was that a former employee still had access, the telemetry revealed a different story. The account was being remotely operated using valid credentials from a public IP address, allowing the attacker to move across multiple systems, collect sensitive data, and stage stolen files without deploying malware.
 
 The investigation used Microsoft Defender for Endpoint (MDE) telemetry within Microsoft Sentinel and correlated evidence across `DeviceLogonEvents`, `DeviceProcessEvents`, and `DeviceFileEvents` to reconstruct the attack timeline.
 
